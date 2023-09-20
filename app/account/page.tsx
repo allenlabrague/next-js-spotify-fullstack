@@ -1,14 +1,18 @@
 import Header from "@/components/Header";
+import Profile from "@/components/Profile";
+import ProfileContent from "./components/ProfileContent";
+
+import getSongsByUserId from "@/actions/getSongsByUserId";
 
 export const revalidate = 0;
 
-const Account = () => {
+const Account = async () => {
+  const userSongs = await getSongsByUserId();
   return (
     <div className=" bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
-      <Header>
-        <h1 className="text-white text-3xl font-semibold text-center">
-          Account page is coming soon! please wait for more update!
-        </h1>
+      <Header className="from-bg-neutral-900">
+        <Profile />
+        <ProfileContent songs={userSongs} />
       </Header>
     </div>
   );
