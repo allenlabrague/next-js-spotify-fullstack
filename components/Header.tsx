@@ -15,6 +15,9 @@ import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 import Link from "next/link";
 
+import { AiOutlinePlus } from "react-icons/ai";
+import useUploadModal from "@/hooks/useUploadModal";
+
 interface HeaderProps {
   children: React.ReactNode;
   className?: string;
@@ -23,6 +26,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const authModal = useAuthModal();
   const router = useRouter();
+  const uploadModal = useUploadModal();
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -37,6 +41,17 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
     } else {
       toast.success("Logged out successfully!");
     }
+  };
+
+  const onClick = () => {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    // handle upload later
+
+    // TODO: check for subscriptions;
+
+    return uploadModal.onOpen();
   };
 
   return (
@@ -72,6 +87,12 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               <BiSearch className="text-black" size={20} />
             </button>
           </Link>
+          <button
+            onClick={onClick}
+            className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition"
+          >
+            <AiOutlinePlus size={20} className="text-black" />
+          </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
           {user ? (
