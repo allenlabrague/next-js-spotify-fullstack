@@ -5,8 +5,16 @@ export interface Song {
   user_id: string;
   author: string;
   title: string;
+  lyrics: string;
   song_path: string;
   image_path: string;
+}
+export interface ProfileDetails {
+  id: string;
+  full_name: string;
+  username: string;
+  website: string;
+  avatar_url: string;
 }
 
 export interface UserDetails {

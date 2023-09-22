@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import toast from "react-hot-toast";
 
-import { useUser } from "@/hooks/useUser";
 import Button from "./Button";
+import Link from "next/link";
+import { useUser } from "@/hooks/useUser";
 
 const Profile = () => {
-  const { user } = useUser();
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
 
   if (!user) {
     router.push("/");
@@ -57,9 +58,11 @@ const Profile = () => {
                 {emailWithoutNumbers}
               </h1>
               <div className="flex items-center gap-x-4">
-                <Button className="bg-white py-1 px-1 w-[100px] text-sm">
-                  Edit profile
-                </Button>
+                <Link href="/account/edit-account">
+                  <Button className="bg-white py-1 px-1 w-[100px] text-sm">
+                    Edit profile
+                  </Button>
+                </Link>
                 <Button
                   onClick={handleLogout}
                   className="bg-white py-1 px-1 w-[100px] text-sm"

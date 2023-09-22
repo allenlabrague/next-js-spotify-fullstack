@@ -11,6 +11,7 @@ import useUploadModal from "@/hooks/useUploadModal";
 import { useUser } from "@/hooks/useUser";
 import Modal from "./Modal";
 import Input from "./Input";
+import Textarea from "./Textarea";
 import Button from "./Button";
 
 const UploadModal = () => {
@@ -24,6 +25,7 @@ const UploadModal = () => {
     defaultValues: {
       author: "",
       title: "",
+      lyrics: "",
       song: null,
       image: null,
     },
@@ -85,6 +87,7 @@ const UploadModal = () => {
           user_id: user.id,
           title: values.title,
           author: values.author,
+          lyrics: values.lyrics,
           image_path: imageData.path,
           song_path: songData.path,
         });
@@ -125,6 +128,12 @@ const UploadModal = () => {
           disabled={isLoading}
           {...register("author", { required: true })}
           placeholder="Song author"
+        />
+        <Textarea
+          id="lyrics"
+          disabled={isLoading}
+          {...register("lyrics", { required: true })}
+          placeholder="Lyrics (Optional)"
         />
         <div>
           <div className="pb-1">Select a song file</div>
