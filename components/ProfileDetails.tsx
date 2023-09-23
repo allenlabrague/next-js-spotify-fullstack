@@ -18,7 +18,7 @@ const ProfileUserDetails: React.FC<ProfileUserDetailsProps> = ({ users }) => {
             <AiOutlineLink />
             <div className="w-[300px] truncate">
               <h2 className="text-left">
-                Click "Edit" to create your information.
+                Click Edit profile to create your information.
               </h2>
             </div>
           </div>
@@ -26,6 +26,7 @@ const ProfileUserDetails: React.FC<ProfileUserDetailsProps> = ({ users }) => {
       </>
     );
   }
+
   return (
     <>
       <div className="flex flex-col my-3">
