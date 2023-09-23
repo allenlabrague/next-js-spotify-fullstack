@@ -83,9 +83,9 @@ export default function AccountForm({ session }: { session: Session | null }) {
         );
       }
 
-      toast.success("Profile updated!");
+      toast.success("Profile updated!, go back to Profile");
 
-      router.back();
+      router.push("/");
     } catch (error) {
       toast.error("Error updating the data!");
     } finally {
@@ -96,14 +96,14 @@ export default function AccountForm({ session }: { session: Session | null }) {
   if (!user) {
     router.push("/");
     return (
-      <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 text-center">
+      <h1 className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 text-center text-2xl">
         User not found.
-      </div>
+      </h1>
     );
   }
 
   return (
-    <form className="flex flex-col gap-y-4">
+    <form className="flex flex-col gap-y-4 w-full lg:w-[500px] mx-auto">
       <Avatar
         uid={user!.id}
         url={avatar_url}
@@ -116,7 +116,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
       <Input
         id="fullName"
         disabled={loading}
-        placeholder="Enter your full name (optional)"
+        placeholder="Enter your full name"
         value={fullname || ""}
         onChange={(e) => setFullname(e.target.value)}
         required
@@ -133,21 +133,25 @@ export default function AccountForm({ session }: { session: Session | null }) {
       <Input
         id="website"
         disabled={loading}
-        placeholder="Enter your website link"
+        placeholder="Enter your website link (optional)"
         value={website || ""}
         onChange={(e) => setWebsite(e.target.value)}
         required
       />
-      <Button
-        disabled={loading}
-        className="button primary block"
-        onClick={() =>
-          updateProfile({ fullname, username, website, avatar_url })
-        }
-        type="submit"
-      >
-        Update
-      </Button>
+      {username && fullname && avatar_url ? (
+        <Button
+          disabled={loading}
+          className="button primary block"
+          onClick={() =>
+            updateProfile({ fullname, username, website, avatar_url })
+          }
+          type="submit"
+        >
+          Update
+        </Button>
+      ) : (
+        <Button disabled>Update</Button>
+      )}
     </form>
   );
 }

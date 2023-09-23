@@ -8,8 +8,15 @@ import toast from "react-hot-toast";
 import Button from "./Button";
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
+import { ProfileDetails } from "@/types";
+import ProfileUserDetails from "./ProfileDetails";
+import UserImage from "./UserImage";
 
-const Profile = () => {
+interface ProfileProps {
+  users: ProfileDetails[];
+}
+
+const Profile: React.FC<ProfileProps> = ({ users }) => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -17,15 +24,6 @@ const Profile = () => {
   if (!user) {
     router.push("/");
   }
-
-  // Check if the user object exists and has an email property
-  const email = user?.email;
-
-  // Extract the part of the email address before "@" symbol
-  const emailWithoutDomain = email?.split("@")[0];
-
-  // Remove numeric characters from the email part
-  const emailWithoutNumbers = emailWithoutDomain?.replace(/\d+/g, "");
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
@@ -44,20 +42,15 @@ const Profile = () => {
       {user ? (
         <div className="mt-20">
           <div className="flex flex-col md:flex-row items-center gap-x-5">
-            <div className="relative h-32 w-32 lg:h-44 lg:w-44">
-              <Image
-                fill
-                src="/images/default.svg"
-                alt="liked-image"
-                className="object-cover rounded-full bg-white p-1"
-              />
+            <div>
+              {users.map((user) => (
+                <UserImage key={user.id} data={user} />
+              ))}
             </div>
             <div className="flex flex-col gap-y-2 mt-4 md:mt-0">
               <p className="hidden md:block font-semibold text-sm">Profile</p>
-              <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold my-2">
-                {emailWithoutNumbers}
-              </h1>
-              <div className="flex items-center gap-x-4">
+              <ProfileUserDetails users={users} />
+              <div className="flex items-center gap-x-4 justify-center md:justify-start">
                 <Link href="/account/edit-account">
                   <Button className="bg-white py-1 px-1 w-[100px] text-sm">
                     Edit profile
@@ -74,7 +67,9 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <h1 className="text-white text-3xl font-semibold">User not found.</h1>
+        <h1 className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 text-center text-2xl">
+          User not found.
+        </h1>
       )}
     </>
   );

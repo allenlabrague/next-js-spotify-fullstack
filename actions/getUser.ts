@@ -7,10 +7,12 @@ const getUser = async (): Promise<ProfileDetails[]> => {
     cookies: cookies,
   });
 
+  const { data: sessionData } = await supabase.auth.getSession();
+
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
-    .order("created_at", { ascending: false });
+    .eq("id", sessionData.session?.user.id);
 
   if (error) {
     console.log(error);

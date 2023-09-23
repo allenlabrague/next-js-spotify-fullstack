@@ -17,8 +17,8 @@ const ProfileLibrary: React.FC<ProfileLibraryProps> = ({ songs }) => {
   if (user) {
     if (songs.length === 0) {
       return (
-        <h1 className="text-white text-2xl font-semibold mt-7">
-          No songs posted
+        <h1 className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 text-center text-2xl">
+          No songs posted.
         </h1>
       );
     }
@@ -28,7 +28,7 @@ const ProfileLibrary: React.FC<ProfileLibraryProps> = ({ songs }) => {
     <>
       {user ? (
         <>
-          <div className="flex flex-col items-start mt-7">
+          <div className="flex flex-col items-start mt-7 p-6">
             <h1 className="text-white text-2xl font-semibold">Posted music</h1>
             <p className="text-neutral-400 text-sm truncate">
               Only visible to you
