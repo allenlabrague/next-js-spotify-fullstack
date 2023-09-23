@@ -12,7 +12,8 @@ const getUser = async (): Promise<ProfileDetails[]> => {
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
-    .eq("id", sessionData.session?.user.id);
+    .eq("id", sessionData.session?.user.id)
+    .single();
 
   if (error) {
     console.log(error);

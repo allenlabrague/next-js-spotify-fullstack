@@ -13,7 +13,7 @@ import ProfileUserDetails from "./ProfileDetails";
 import UserImage from "./UserImage";
 
 interface ProfileProps {
-  users: ProfileDetails[];
+  users: ProfileDetails;
 }
 
 const Profile: React.FC<ProfileProps> = ({ users }) => {
@@ -43,9 +43,7 @@ const Profile: React.FC<ProfileProps> = ({ users }) => {
         <div className="mt-20">
           <div className="flex flex-col md:flex-row items-center gap-x-5">
             <div>
-              {users.map((user) => (
-                <UserImage key={user.id} data={user} />
-              ))}
+              <UserImage data={users} />
             </div>
             <div className="flex flex-col gap-y-2 mt-4 md:mt-0">
               <p className="hidden md:block font-semibold text-sm">Profile</p>
