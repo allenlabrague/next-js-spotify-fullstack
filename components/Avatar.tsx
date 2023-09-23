@@ -82,7 +82,7 @@ export default function Avatar({
           height={size}
           src={avatarUrl}
           alt="Avatar"
-          className="rounded-full mx-auto mb-10"
+          className="rounded-full mx-auto mb-10 object-cover"
           style={{ height: size, width: size }}
         />
       ) : (
