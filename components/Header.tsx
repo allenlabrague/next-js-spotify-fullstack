@@ -7,6 +7,7 @@ import { HiHome } from "react-icons/hi";
 import { FaUserAlt } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
 import { toast } from "react-hot-toast";
+import { useState, useEffect } from "react";
 import Button from "./Button";
 
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -23,7 +24,24 @@ interface HeaderProps {
   className?: string;
 }
 
+// Define an array of background colors
+const backgroundColors = [
+  "from-blue-800",
+  "from-emerald-800",
+  "from-rose-800",
+  "from-slate-800",
+  "from-orange-800",
+];
+
+// Function to get a random background color
+const getRandomBackgroundColor = () => {
+  const randomIndex = Math.floor(Math.random() * backgroundColors.length);
+  return backgroundColors[randomIndex];
+};
+
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
+  const [bgColor, setBgColor] = useState(getRandomBackgroundColor());
+
   const authModal = useAuthModal();
   const router = useRouter();
   const uploadModal = useUploadModal();
@@ -54,12 +72,20 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
     return uploadModal.onOpen();
   };
 
+  // Update the background color when the component mounts
+  useEffect(() => {
+    setBgColor(getRandomBackgroundColor());
+  }, []);
+
+  // Function to change the background color
+  const changeBackgroundColor = () => {
+    const newColor = getRandomBackgroundColor();
+    setBgColor(newColor);
+  };
+
   return (
     <div
-      className={twMerge(
-        `h-fit bg-gradient-to-b from-emerald-800 p-6`,
-        className
-      )}
+      className={twMerge(`h-fit bg-gradient-to-b ${bgColor} p-6`, className)}
     >
       <div className="w-full mb-4 flex items-center justify-between">
         <div className="hidden md:flex gap-x-2 items-center">

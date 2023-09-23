@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import toast from "react-hot-toast";
@@ -8,15 +7,10 @@ import toast from "react-hot-toast";
 import Button from "./Button";
 import Link from "next/link";
 import { useUser } from "@/hooks/useUser";
-import { ProfileDetails } from "@/types";
 import ProfileUserDetails from "./ProfileDetails";
 import UserImage from "./UserImage";
 
-interface ProfileProps {
-  users: ProfileDetails;
-}
-
-const Profile: React.FC<ProfileProps> = ({ users }) => {
+const Profile = ({ users }) => {
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();

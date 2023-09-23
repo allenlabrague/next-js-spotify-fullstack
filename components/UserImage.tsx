@@ -1,12 +1,7 @@
 import useLoadUserImage from "@/hooks/useLoadUserImage";
-import { ProfileDetails } from "@/types";
 import Image from "next/image";
 
-interface UserImageProps {
-  data: ProfileDetails;
-}
-
-const UserImage: React.FC<UserImageProps> = ({ data }) => {
+const UserImage = ({ data }) => {
   const imageUrl = useLoadUserImage(data);
 
   if (!data.avatar_url) {

@@ -12,7 +12,7 @@ const ProfileUserDetails: React.FC<ProfileUserDetailsProps> = ({ users }) => {
       <>
         <div className="flex flex-col my-3">
           <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold mb-2 text-center md:text-left">
-            No username.
+            No username
           </h1>
           <div className="flex gap-x-2 text-neutral-400 hover:underline items-center mt-1 text-center md:text-left">
             <AiOutlineLink />
@@ -33,16 +33,14 @@ const ProfileUserDetails: React.FC<ProfileUserDetailsProps> = ({ users }) => {
         <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold mb-2 text-center md:text-left">
           {users.username}
         </h1>
-        <div className="flex gap-x-2 text-neutral-400 hover:underline items-center mt-1 text-center md:text-left">
+        <Link
+          href={users.website}
+          target="_blank"
+          className="w-[300px] truncate flex items-center gap-x-2 justify-center text-neutral-400 hover:underline hover:opacity-70 md:justify-start"
+        >
           <AiOutlineLink />
-          <Link
-            href={users.website}
-            target="_blank"
-            className="w-[300px] truncate"
-          >
-            <h2 className="text-left">{users.website}</h2>
-          </Link>
-        </div>
+          <h2 className="text-left">{users.website}</h2>
+        </Link>
       </div>
     </>
   );
