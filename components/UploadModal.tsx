@@ -133,7 +133,7 @@ const UploadModal = () => {
           id="lyrics"
           disabled={isLoading}
           {...register("lyrics", { required: true })}
-          placeholder="Lyrics (Optional)"
+          placeholder="Lyrics"
         />
         <div>
           <div className="pb-1">Select a song file</div>

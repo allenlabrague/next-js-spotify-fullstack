@@ -5,6 +5,7 @@ import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import useSound from "use-sound";
+import { LiaMicrophoneAltSolid } from "react-icons/lia";
 
 import MediaItem from "./MediaItem";
 import LikeButton from "./LikeButton";
@@ -13,6 +14,7 @@ import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
 
 import { Song } from "@/types";
+import Link from "next/link";
 
 interface PlayerContentProps {
   song: Song;
@@ -101,7 +103,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         </div>
       </div>
 
-      <div className="flex md:hidden col-auto w-full justify-end items-center">
+      <div className="flex md:hidden col-auto w-full justify-end items-center gap-x-2">
+        <Link href="/lyrics">
+          <LiaMicrophoneAltSolid size={20} />
+        </Link>
         <div
           onClick={handlePlay}
           className="h-10 w-10 flex items-center justify-center rounded-full bg-white p-1 cursor-pointer"
@@ -131,6 +136,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
       <div className="hidden md:flex w-full justify-end pr-2">
         <div className="flex items-center gap-x-2 w-[120px]">
+          <Link href="/lyrics">
+            <LiaMicrophoneAltSolid size={20} />
+          </Link>
           <VolumeIcon
             onClick={toggleMute}
             className="cursor-pointer"
