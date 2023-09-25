@@ -38,7 +38,7 @@ const DialogInstruction = () => {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-neutral-900/90 backdrop-blur-sm fixed inset-0" />
-        <Dialog.Content className="fixed drop-shadow-md border border-neutral-700 top-[50%] left-[50%] max-h-full h-full md:h-auto md:max-h-[85vh] w-full md:w-[90vw] md:max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-md bg-neutral-800 p-[25px] focus:outline-none">
+        <Dialog.Content className="fixed drop-shadow-md border border-neutral-700 top-[50%] left-[50%] max-h-full h-full md:h-auto md:max-h-[85vh] w-full md:w-[90vw] md:max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-md bg-neutral-800 p-[25px] focus:outline-none overflow-y-auto filter-none">
           <Dialog.Title className="text-xl text-center font-bold mb-4">
             Welcome to Spotify Clone!
           </Dialog.Title>
@@ -48,9 +48,11 @@ const DialogInstruction = () => {
           {paragraphs.map((paragraph, index) => (
             <ul
               key={index}
-              className="flex flex-col items-start gap-y-2 md:gap-y-5 list-disc list-inside text-sm md:text-base"
+              className="flex flex-col items-start gap-y-5 list-disc list-inside"
             >
-              <li className="mt-2 md:mt-4">{paragraph.title}</li>
+              <li className="mt-2 md:mt-4 leading-relaxed">
+                {paragraph.title}
+              </li>
             </ul>
           ))}
 
