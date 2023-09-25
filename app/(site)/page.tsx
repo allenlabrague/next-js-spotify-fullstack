@@ -26,7 +26,10 @@ export default async function Home() {
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
           <h1 className="text-white text-2xl font-semibold">Newest songs</h1>
-          <DialogInstruction />
+          <div className="flex items-center gap-x-3">
+            <p className=" text-xs text-neutral-400">Details</p>
+            <DialogInstruction />
+          </div>
         </div>
         <PageContent songs={songs} />
       </div>
