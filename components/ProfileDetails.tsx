@@ -39,7 +39,9 @@ const ProfileUserDetails: React.FC<ProfileUserDetailsProps> = ({ users }) => {
           className="w-[300px] truncate flex items-center gap-x-2 justify-center text-neutral-400 hover:underline hover:opacity-70 md:justify-start"
         >
           <AiOutlineLink />
-          <h2 className="text-left">{users.website}</h2>
+          <h2 className="text-left">
+            {users.website ? users.website : "no link"}
+          </h2>
         </Link>
       </div>
     </>

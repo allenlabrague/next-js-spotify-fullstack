@@ -8,6 +8,7 @@ export interface Song {
   lyrics: string;
   song_path: string;
   image_path: string;
+  creator_song: string;
 }
 export interface ProfileDetails {
   id: string;

@@ -26,6 +26,7 @@ const UploadModal = () => {
       author: "",
       title: "",
       lyrics: "",
+      creator_song: "",
       song: null,
       image: null,
     },
@@ -88,6 +89,7 @@ const UploadModal = () => {
           title: values.title,
           author: values.author,
           lyrics: values.lyrics,
+          creator_song: values.creator_song,
           image_path: imageData.path,
           song_path: songData.path,
         });
@@ -117,23 +119,31 @@ const UploadModal = () => {
       onChange={onChange}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-4">
+        <div className="flex items-center gap-x-4">
+          <Input
+            id="title"
+            disabled={isLoading}
+            {...register("title", { required: true })}
+            placeholder="Song title"
+          />
+          <Input
+            id="author"
+            disabled={isLoading}
+            {...register("author", { required: true })}
+            placeholder="Song author"
+          />
+        </div>
         <Input
-          id="title"
+          id="creator_song"
           disabled={isLoading}
-          {...register("title", { required: true })}
-          placeholder="Song title"
-        />
-        <Input
-          id="author"
-          disabled={isLoading}
-          {...register("author", { required: true })}
-          placeholder="Song author"
+          {...register("creator_song", { required: true })}
+          placeholder="Creator"
         />
         <Textarea
           id="lyrics"
           disabled={isLoading}
-          {...register("lyrics", { required: true })}
-          placeholder="Lyrics"
+          {...register("lyrics", { required: false })}
+          placeholder="Lyrics (optional)"
         />
         <div>
           <div className="pb-1">Select a song file</div>
