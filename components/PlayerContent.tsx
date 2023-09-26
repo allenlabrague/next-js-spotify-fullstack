@@ -71,6 +71,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     onend: () => {
       setIsPlaying(false);
       onPlayNext();
+      sound.fade(100, 0);
     },
     onpause: () => setIsPlaying(false),
     format: ["mp3"],
@@ -151,7 +152,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
             </div>
             <div className="bg-[#D8672A] p-5 py-2 rounded-lg mt-10">
               <div className="flex items-center justify-between mt-3">
-                <h2 className="font-bold text-xl">Lyrics</h2>
+                <h2 className="font-bold text-2xl">Lyrics</h2>
                 <Link href={"/lyrics"}>
                   <div className="flex items-center gap-x-2 bg-[#6B3311] py-2 px-3 rounded-full">
                     <p className="text-xs uppercase">More</p>

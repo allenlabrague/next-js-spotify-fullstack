@@ -53,7 +53,7 @@ const DialogPlayer: React.FC<DialogPlayerProps> = ({ children }) => {
           {/* test */}
           {children}
           <Dialog.Close asChild>
-            <button className="text-neutral-400 hover:text-white absolute top-[30px] left-[30px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:outline-none cursor-pointer">
+            <button className="hover:opacity-75 transition text-white absolute top-[30px] left-[30px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:outline-none cursor-pointer">
               <IoIosArrowDown size={45} />
             </button>
           </Dialog.Close>
